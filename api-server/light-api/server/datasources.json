@@ -1,0 +1,11 @@
+{
+  "mongodb": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "eae_db",
+    "password": "",
+    "name": "mongodb",
+    "connector": "mongodb"
+  }
+}

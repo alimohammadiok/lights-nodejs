@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Socket.IO chat</title>
+  </head>
+  <body>
+      <div class="container">
+        <div id="lambalar_listesi" >
+        <!--lambalar dinamik bir sekilde getirilebilir-->
+        </div>
+      </br>
+      <div class='col-md-3 col-sm-6 col-xs-12 '>
+        <button class="btn btn-primary btn-lg btn-block" id="5cb5c51677b1df3fc038b04b" onclick="changeHeadingBg('5cb5c51677b1df3fc038b04b');">
+            <span class="glyphicon glyphicon-lamp"></span> 
+        </button>
+      </div>
+
+      <div class='col-md-3 col-sm-6 col-xs-12 '>
+        <button class="btn btn-primary btn-lg btn-block" id="5cb5c75077b1df3fc038b04c" onclick="changeHeadingBg('5cb5c75077b1df3fc038b04c');">
+            <span class="glyphicon glyphicon-lamp"></span> 
+        </button>
+      </div>
+
+      <div class='col-md-3 col-sm-6 col-xs-12 '>
+        <button class="btn btn-primary btn-lg btn-block" id="5cb5c7fe77b1df3fc038b04d" onclick="changeHeadingBg('5cb5c7fe77b1df3fc038b04d');">
+            <span class="glyphicon glyphicon-lamp"></span> 
+        </button>
+      </div>
+
+      <div class='col-md-3 col-sm-6 col-xs-12 '>
+        <button class="btn btn-primary btn-lg btn-block" id="5cb5c80d77b1df3fc038b04e" onclick="changeHeadingBg('5cb5c80d77b1df3fc038b04e');">
+            <span class="glyphicon glyphicon-lamp"></span> 
+        </button>
+      </div>
+
+        
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+function changeHeadingBg(id){
+  var socket = io();
+  var x = document.getElementById(id);
+        console.log(x);
+        var bgcolor = x.style.backgroundColor;
+        console.log(bgcolor);
+        var id = x.id;
+        
+        state =0;
+        if(bgcolor == 'red')
+        {
+          state = 1
+        }
+
+        if(bgcolor == 'yellow')
+        {
+          state = 0
+        }
+        socket.emit('light', {id, state});
+}
+</script>
+
+
+<script>
+ 
+    
+ document.addEventListener("DOMContentLoaded", function(event) { 
+ 
+
+    var socket = io();
+        socket.on('light', function(lightlar){
+         lightlar.forEach(element => {
+           console.log(element.id);
+           var x = document.getElementById(element.id);
+            
+            var bgcolor = x.style.backgroundColor;
+            
+            //var id = x[0].id;
+
+            if(element.state ==1)
+            {
+              x.style.backgroundColor = "yellow";
+            }
+            else
+            {
+              x.style.backgroundColor = "red";
+            }
+            x = null;
+
+
+         });
+
+    });
+      });
+
+
+      function lambalariGetir(){
+        //lambalari dinamik bir sekilde getirmeyi saglar
+            /* var div = document.createElement("div");
+            div.classList.add("col-lg-2 col-md-3 col-sm-6 col-xs-12 ");
+            var button = document.createElement("Button");
+           
+            button.classList.add("btn");
+            button.classList.add("btn-primary");
+            button.classList.add("btn-lg");
+            button.classList.add("btn-block");
+            if (element.state) {
+              button.style.backgroundColor = "yellow";
+            } 
+
+            else{
+              button.style.backgroundColor = "red";
+            }
+            
+            var span = document.createElement("span");
+            span.classList.add("glyphicon");
+            span.classList.add("glyphicon-lamp");
+            button.appendChild(span);
+            div.appendChild(button);
+            document.getElementById("lambalar_listesi").appendChild(div);
+            button.onclick = function(){
+              changeHeadingBg(element.id);
+            }; */
+      }
+       
+</script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "light",
+  "plural": "lights",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "state": {
+      "type": "number",
+      "required": true
+    },
+    "brand": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
